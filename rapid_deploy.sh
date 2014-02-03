@@ -66,6 +66,17 @@ clean() {
 	rm -R build
 }
 
+tfsReplace() {
+echo -n "Where is the TFS executable? Provide a proper directory like '/root/tfs/'"
+echo -n "make sure that you select yes when overwrinting"
+read tfsDir
+	cd
+	cd forgottenserver/build/
+	mv tfs $tfsdir
+	cd
+	echo -n "Done"
+}
+
 ###
 ### Script starts here
 ###
@@ -166,7 +177,7 @@ read tfsKill
 		echo "Answer y or n"
 	fi
 
-echo -n "Should the script move the new compiled TFS to the existing directory?"
+echo -n "Should the script move the new compiled TFS to the existing directory and replace it?"
 read ans2_1
 	if [[ $ans2_1 = "y" ]]
 		tfsReplace
@@ -176,14 +187,7 @@ read ans2_1
 	else
 		echo "Answer y or n"
 	fi
-tfsReplace() {
-echo -n "Where is the TFS executable? Provide a proper directory like '/root/tfs/'"
-read tfsDir
-	cd
-	cd forgottenserver/build/
-	mv 
 
-}
 	
 
 	
