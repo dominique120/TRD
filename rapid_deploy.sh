@@ -78,8 +78,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #OS dependencies and other stuff
-echo "Chose your Operating System. {Supported: Debian, Ubuntu, Fedora, FreeBSD, ArchLinux, MacOSX."$yellowText"Not recommended->"$none "CentOS or Scientific Linux"
-#Note for SL6 and CentOS, look below.
+echo "Chose your Operating System. {Supported: Debian, Ubuntu, Fedora, ArchLinux, CentOS or Scientific Linux"
 read ans1 
 			
 if [[ $ans1 = "Fedora" ]]; then
@@ -163,10 +162,28 @@ read tfsKill
 		
 	elif [[ $tfsKill = "n" ]]; then
 		:
+	else
+		echo "Answer y or n"
 	fi
 
+echo -n "Should the script move the new compiled TFS to the existing directory?"
+read ans2_1
+	if [[ $ans2_1 = "y" ]]
+		tfsReplace
+	elif [[ $ans2_1 = "n" ]]
+		echo -n "Continuing"
+		:
+	else
+		echo "Answer y or n"
+	fi
+tfsReplace() {
 echo -n "Where is the TFS executable? Provide a proper directory like '/root/tfs/'"
 read tfsDir
+	cd
+	cd forgottenserver/build/
+	mv 
+
+}
 	
 
 	
