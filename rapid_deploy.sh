@@ -7,7 +7,6 @@ blueText=$(tput setab 0; tput setaf 6)
 yellowText=$(tput setab 0; tput setaf 3)
 none=$(tput sgr0)
 
-
 ###
 ### Functions to simplify stuff :)
 ###
@@ -32,11 +31,13 @@ centDeps() {
 
 archDeps() {
 	pacman -Syu
-	pacman -S --noconfirm base-devel git cmake lua gmp boost boost-libs libmariadbclient
-}
+	pacman -S --noconfirm base-devel git cmake lua gmp boost \
+		boost-libs libmariadbclient
+	libInstall
+	}
 
 libInstall() {
-	echo $greenText"Libraries and Build Tools... Installed"$none
+	echo $greenText"Libraries and Build Tools have been installed."$none
 }
 
 genBuild() {
@@ -61,14 +62,13 @@ coreBuild=$((cpuCores + 1))
 			fi				
 }
 # Clean used before compile to remove the build directory in case there has been a previous build
-
 clean() {
 	rm -R build
 }
 
 tfsReplace() {
 echo -n "Where is the TFS executable? Provide a proper directory like '/root/tfs/'"
-echo -n "make sure that you select yes when overwrinting"
+echo -n "make sure that you select yes when overwriting"
 read tfsDir
 	cd
 	cd forgottenserver/build/
@@ -188,7 +188,7 @@ read ans2_1
 		echo "Answer y or n"
 	fi
 
-	
+
 
 	
 
