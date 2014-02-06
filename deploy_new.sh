@@ -7,7 +7,7 @@ blueText=$(tput setab 0; tput setaf 6)
 yellowText=$(tput setab 0; tput setaf 3)
 none=$(tput sgr0)
 
-specBlueText=$(tput setab 7; tput setaf 4)
+specBlueText=$(tput setab 7; tput setaf 4; tput bold)
 
 ## Fetch number of CPUs
 cpuCores=$(nproc)
@@ -60,7 +60,7 @@ cleanOldRev() { #removes previous download completely
 
 #Needs lots of testing
 tfsReplace() { #moves, replaces and renames
-echo -n $yellowtext"FYI: "$none
+echo -n $yellowText"FYI: "$none
 echo -n $specBlueText
 ls $HOME
 echo -n $none
