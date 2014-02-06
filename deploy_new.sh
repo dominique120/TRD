@@ -174,7 +174,7 @@ read ans5_1
 	if [[ $ans5_1 = "y" ]]; then
 	buildPre
 		echo -n "Should it build with multicore support?"
-		read ans4_2
+		read ans5_2
 			if [[ $ans5_2 = "y" ]]; then
 				multiCoreBuild
 			elif [[ $ans5_2 = "n" ]]; then
