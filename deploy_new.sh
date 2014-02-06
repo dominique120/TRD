@@ -187,7 +187,8 @@ read ans5_1
 		echo -n "Continuing..."
 	else
 		echo -n "Provide a valid answer [y] or [n]"
-		
+	fi
+
 #Replacing the existing executable
 echo -n "This step will kill the existing TFS(if its open). Type [enter] to proceed, type [skip] to skip"
 read ans5_1
@@ -200,4 +201,3 @@ read ans5_1
 		echo -n "type something correctly"
 		::
 	fi
-	
