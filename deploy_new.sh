@@ -15,7 +15,6 @@ coreBuild=$((cpuCores + 1))
 ###
 ### Functions to simplify stuff :)
 ###
-
 debianDeps() { #Dependencies for debian/ubuntu
 	apt-get -y install cmake build-essential liblua5.2-dev \
 		libgmp3-dev libmysqlclient-dev libboost-system-dev git
@@ -101,8 +100,6 @@ tfsKill() { #Until signals are added to TFS, the process must be killed.
 ###
 ### Script stars here
 ###
-
-trap 'die "Exiting."' INT TERM EXIT
 #check if root
 if [[ $EUID -ne 0 ]]; then
 	echo "You must be root to use this script, press enter to exit."
@@ -111,8 +108,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Notice to the user
-echo -n $blueText"This script will do everything necessary to put a new TFS executable in place of the current one.\n"$none \
-$redText"This script is for advanced users only, use it only if you know what you are doing. \n"$none "This script does all its operations in the home folder of the current user, beware! \n\n"
+echo -n $blueText"This script will do everything necessary to put a new TFS executable in place of the current one."\n$none \
+$redText"This script is for advanced users only, use it only if you know what you are doing."\n$none "This script does all its operations in the home folder of the current user, beware!"\n\n
 
 #Clean old revs
 echo -n "Should the script clean the home folder for any previous revs? [y] or [n]"
@@ -204,7 +201,3 @@ read ans5_1
 		::
 	fi
 	
-
-	
-
-
