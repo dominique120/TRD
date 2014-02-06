@@ -58,9 +58,13 @@ cleanOldRev() { #removes previous download completely
 
 #Needs lots of testing
 tfsReplace() { #moves, replaces and renames
-	echo -n "Where is the TFS executable? Provide a proper directory like '/root/tfs/' if not it will fail"
-	echo -n "If you already have an executable it will be renamed to tfs.old, and if tfs.old exists, it will be deleted."
-	echo -n "Make sure that you select yes when overwriting."
+echo -n $yellowtext"FYI: "$none
+$blueText
+ls $HOME
+$none
+	echo -n "Where is the TFS executable?" $redText"Provide a proper directory like '/root/tfs/' if not it will fail. "$none
+	echo -n "If you already have an executable it will be renamed to tfs.old, and if tfs.old exists, it will be deleted. "
+	echo -n "Make sure that you select yes when overwriting. "
 	echo -n "Type [break] to skip this step."
 	read tfsDir
 	if [[ $tfsDir = "break" ]]; then
