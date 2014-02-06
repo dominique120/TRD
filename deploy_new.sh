@@ -102,13 +102,54 @@ tfsKill() { #Until signals are added to TFS, the process must be killed.
 ### Script stars here
 ###
 
-
+#Notice to the user
 echo -n $blueText"This script will do everything necessary to put a new TFS executable in place of the current one.\n"$none \
-$redText"This script is for advanced users only, use it only if you know what you are doing. \n"$none
+$redText"This script is for advanced users only, use it only if you know what you are doing. \n"$none "This script does all its operations in the home folder of the current user, beware! \n\n"
 
+#Clean old revs
+echo -n "Should the script clean the home folder for any previous revs? [y] or [n]"
+read ans1_1
+	if [[ $ans1_1 = "y" ]]; then 
+		cleanOldRev
+	elif [[ $ans1_1 = "n" ]]; then
+		:
+	else
+		echo -n "Answer [y] or [n]"
+	fi
+	
+#Clone new rev
+#Might add a check to see if forgottenserver dir exists.
+echo -n "Should the script clone the newest TFS rev?"
+read ans2_1
+	if [[ $ans2_1 = "y" ]]; then
+		fetchTfs
+	elif [[ $ans2_1 = "n" ]]; then
+		:
+	else
+		echo -n "Answer [y] or [n]"
+	fi
 
-
-
-
+#Install and update deps
+echo -n "Should the script update and fetch the dependencies?"
+read ans3_1
+	if [[ $ans3_1 = "y" ]]; then
+		echo -n "What OS is this? [CentOS, Scientific Linux, Ubuntu, Debian, Arch Linux]"
+		read ans3_2
+			if [[ $ans3_2 = "CentOS" ]] || [[ $ans3_2 = "Scientific Linux" ]]; then
+				centDeps
+			elif [[ $ans3_2 = "Debian" ]] || [[ $ans3_2 = "Ubuntu" ]]; then
+				debianDeps
+			elif [[ $ans3_2 = "Fedora" ]]; then
+				fedoraDeps
+			elif [[ $ans3_2 = "Arch Linux" ]]; then
+				archDeps
+			else
+				echo -n "Pick a valid OS"
+				:
+			fi
+	elif [[ $ans3_1 = "n" ]]; then
+		:
+	fi
+	
 
 
