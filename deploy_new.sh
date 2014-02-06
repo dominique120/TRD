@@ -62,11 +62,11 @@ tfsReplace() { #moves, replaces and renames
 		:
 	else	
 		cd
-			cd $tfsdir
+			cd $tfsDir
 			mv tfs tfs.old
 			cd
 				cd /forgottenserver/build/
-				mv tfs $tfsdir
+				mv tfs $tfsDir
 				cd
 			echo -n "Done"
 	fi
