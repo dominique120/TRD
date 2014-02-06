@@ -44,7 +44,7 @@ libInstall() { #Status indicator
 
 fetchTfs() { #Fetch the newest TFS rev and delete the previous one if present.
 	cd $HOME
-	git clone https://github.com/otland/forgottenserver.git	
+	git clone https://github.com/otland/forgottenserver.git
 }
 
 cleanBuild() { #Removes the build directory
@@ -101,6 +101,14 @@ tfsKill() { #Until signals are added to TFS, the process must be killed.
 ###
 ### Script stars here
 ###
+
+trap 'die "Exiting."' INT TERM EXIT
+#check if root
+if [[ $EUID -ne 0 ]]; then
+	echo "You must be root to use this script, press enter to exit."
+	read end
+	exit 1
+fi
 
 #Notice to the user
 echo -n $blueText"This script will do everything necessary to put a new TFS executable in place of the current one.\n"$none \
