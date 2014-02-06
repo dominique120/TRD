@@ -60,7 +60,9 @@ cleanOldRev() { #removes previous download completely
 
 #Needs lots of testing
 tfsReplace() { #moves, replaces and renames
-echo -n $yellowText"FYI: "$none
+echo -n $yellowText"FYI: "
+pwd
+echo -n $none
 echo -n $specBlueText
 ls $HOME
 echo -n $none
