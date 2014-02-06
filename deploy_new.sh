@@ -7,6 +7,8 @@ blueText=$(tput setab 0; tput setaf 6)
 yellowText=$(tput setab 0; tput setaf 3)
 none=$(tput sgr0)
 
+specBlueText$(tput setab 7; tput setaf 4)
+
 ## Fetch number of CPUs
 cpuCores=$(nproc)
 ## make processes to be spawned.
@@ -59,9 +61,9 @@ cleanOldRev() { #removes previous download completely
 #Needs lots of testing
 tfsReplace() { #moves, replaces and renames
 echo -n $yellowtext"FYI: "$none
-$blueText
+echo -n $specBlueText
 ls $HOME
-$none
+echo -n $none
 	echo -n "Where is the TFS executable?" $redText"Provide a proper directory like '/root/tfs/' if not it will fail. "$none
 	echo -n "If you already have an executable it will be renamed to tfs.old, and if tfs.old exists, it will be deleted. "
 	echo -n "Make sure that you select yes when overwriting. "
