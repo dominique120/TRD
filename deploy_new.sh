@@ -89,7 +89,7 @@ multiCoreBuild() { #builds multicore
 	make -j $coreBuild
 }
 
-singleCorebuild() { #builds singlecore
+singleCoreBuild() { #builds singlecore
 	echo -e $blueText"Building on a single thread."$none
 	make
 }
@@ -130,7 +130,7 @@ read ans2_1
 	fi
 
 #Install and update deps
-echo -n "Should the script update and fetch the dependencies?"
+echo -n "Should the script update and fetch the dependencies? [y] or [n]"
 read ans3_1
 	if [[ $ans3_1 = "y" ]]; then
 		echo -n "What OS is this? [CentOS, Scientific Linux, Ubuntu, Debian, Arch Linux]"
@@ -151,5 +151,28 @@ read ans3_1
 		:
 	fi
 	
-
-
+#build the executable
+echo -n "Should the script build the new rev? [y] or [n]"
+read ans4_1
+	if [[ $ans4_1 = "y" ]]; then
+	buildPre
+		echo -n "Should it build with multicore support?"
+		read ans4_2
+			if [[ $ans4_2 = "y" ]]; then
+				multiCoreBuild
+			elif [[ $ans4_2 = "n" ]]; then
+				singleCoreBuild
+			else 
+				echo -n "Provide a valid answer [y] or [n]"
+				:
+			fi
+	elif [[ $ans4_1 = "n" ]]; then
+		echo -n "Continuing..."
+	else
+		echo -n "Provide a valid answer [y] or [n]"
+		
+		
+		
+		
+		
+		
