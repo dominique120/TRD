@@ -7,7 +7,7 @@ blueText=$(tput setab 0; tput setaf 6)
 yellowText=$(tput setab 0; tput setaf 3)
 none=$(tput sgr0)
 
-specBlueText$(tput setab 7; tput setaf 4)
+specBlueText=$(tput setab 7; tput setaf 4)
 
 ## Fetch number of CPUs
 cpuCores=$(nproc)
