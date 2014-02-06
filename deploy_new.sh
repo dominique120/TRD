@@ -191,7 +191,7 @@ read ans5_1
 
 #Replacing the existing executable
 echo -n "This step will kill the existing TFS(if its open). Type [enter] to proceed, type [skip] to skip"
-read ans5_1
+read ans6_1
 	if [[ $ans6_1 = "enter" ]]; then
 		tfsKill
 		tfsReplace
@@ -199,5 +199,5 @@ read ans5_1
 		:
 	else
 		echo -n "type something correctly"
-		::
+		:
 	fi
