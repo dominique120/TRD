@@ -26,7 +26,7 @@ fedoraDeps() { #Dependencies for fedora
 		gmp-devel mysql-devel lua-devel git
 	libInstall
 }
-centDeps() { #Dependencies for CentOS/Scientific linux
+centDeps() { #Dependencies for CentOS/Scientific linux / half broken because of outdated packages in sl and centos
 	yum -y install cmake gcc-c++ boost-devel \
 		gmp-devel mysql-devel lua-devel git
 	libInstall
@@ -43,12 +43,18 @@ libInstall() { #Status indicator
 }
 
 fetchTfs() { #Fetch the newest TFS rev and delete the previous one if present.
-	cd
+	cd $HOME
 	git clone https://github.com/otland/forgottenserver.git	
 }
 
-clean() { #Remves the build directory
-	rm -R build
+cleanBuild() { #Removes the build directory
+	cd $HOME/forgottenserver/
+	rm -rf build
+}
+
+cleanOldRev() { #removes previous download completely
+	cd $HOME
+	rm -rf forgottenserver
 }
 
 #Needs lots of testing
@@ -64,32 +70,45 @@ tfsReplace() { #moves, replaces and renames
 		cd
 			cd $tfsDir
 			mv tfs tfs.old
-			cd
+			cd $HOME
 				cd /forgottenserver/build/
 				mv tfs $tfsDir
-				cd
+				cd 
 			echo -n "Done"
 	fi
 }
 
-
-
-
-
-
-buildPre() {
+buildPre() { #Prepares to build
 	echo -e "Preparing the build environment..."
 	mkdir build && cd build
 		cmake ..
 }
 
-multiCoreBuild() {
+multiCoreBuild() { #builds multicore
 	echo -e $greenText"Building on $cpuCores threads with $coreBuild processes."$none
 	make -j $coreBuild
 }
 
-singleCorebuild() {
+singleCorebuild() { #builds singlecore
 	echo -e $blueText"Building on a single thread."$none
 	make
 }
+
+tfsKill() { #Until signals are added to TFS, the process must be killed.
+	pkill -x tfs
+}
+
+###
+### Script stars here
+###
+
+
+echo -n $blueText"This script will do everything necessary to put a new TFS executable in place of the current one.\n"$none \
+$redText"This script is for advanced users only, use it only if you know what you are doing. \n"$none
+
+
+
+
+
+
 

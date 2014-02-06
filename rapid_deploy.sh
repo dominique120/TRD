@@ -7,25 +7,36 @@ blueText=$(tput setab 0; tput setaf 6)
 yellowText=$(tput setab 0; tput setaf 3)
 none=$(tput sgr0)
 
+## Fetch number of CPUs
+cpuCores=$(nproc)
+## make processes to be spawned.
+coreBuild=$((cpuCores + 1))
+
 ###
 ### Functions to simplify stuff :)
 ###
 
+#Fetch the newest TFS rev and delete the previous one if present.
+fetchTfs() {
+	cd
+	git clone https://github.com/otland/forgottenserver.git	
+}
+
 debianDeps() {
 	apt-get -y install cmake build-essential liblua5.2-dev \
-		libgmp3-dev libmysqlclient-dev libboost-system-dev
+		libgmp3-dev libmysqlclient-dev libboost-system-dev git
 	libInstall
 }
 
 fedoraDeps() {
 	yum -y install cmake gcc-c++ boost-devel \
-		gmp-devel mysql-devel lua-devel
+		gmp-devel mysql-devel lua-devel git
 	libInstall
 }
 
 centDeps() {
 	yum -y install cmake gcc-c++ boost-devel \
-		gmp-devel mysql-devel lua-devel
+		gmp-devel mysql-devel lua-devel git
 	libInstall
 }
 
@@ -41,11 +52,6 @@ libInstall() {
 }
 
 genBuild() {
-## Fetch number of CPUs
-cpuCores=$(nproc)
-## make processes to be spawned.
-coreBuild=$((cpuCores + 1))
-
 	echo "Building..."
 	mkdir build && cd build
 	cmake ..
