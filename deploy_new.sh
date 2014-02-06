@@ -151,28 +151,52 @@ read ans3_1
 		:
 	fi
 	
-#build the executable
-echo -n "Should the script build the new rev? [y] or [n]"
+	
+#Clean the dir for previous builds
+echo -n "Should the script clean for previous builds? [y] or [n]"
 read ans4_1
 	if [[ $ans4_1 = "y" ]]; then
+		cleanBuild
+	elif [[ $ans4_1 = "n" ]]; then
+		:
+	else
+		echo -n "Enter a valid answer"
+	fi
+	
+#build the executable
+echo -n "Should the script build the new rev? [y] or [n]"
+read ans5_1
+	if [[ $ans5_1 = "y" ]]; then
 	buildPre
 		echo -n "Should it build with multicore support?"
 		read ans4_2
-			if [[ $ans4_2 = "y" ]]; then
+			if [[ $ans5_2 = "y" ]]; then
 				multiCoreBuild
-			elif [[ $ans4_2 = "n" ]]; then
+			elif [[ $ans5_2 = "n" ]]; then
 				singleCoreBuild
 			else 
 				echo -n "Provide a valid answer [y] or [n]"
 				:
 			fi
-	elif [[ $ans4_1 = "n" ]]; then
+	elif [[ $ans5_1 = "n" ]]; then
 		echo -n "Continuing..."
 	else
 		echo -n "Provide a valid answer [y] or [n]"
 		
-		
-		
-		
-		
-		
+#Replacing the existing executable
+echo -n "This step will kill the existing TFS(if its open). Type [enter] to proceed, type [skip] to skip"
+read ans5_1
+	if [[ $ans6_1 = "enter" ]]; then
+		tfsKill
+		tfsReplace
+	elif [[ $ans6_1 = "skip" ]]; then
+		:
+	else
+		echo -n "type something correctly"
+		::
+	fi
+	
+
+	
+
+
