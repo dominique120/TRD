@@ -63,13 +63,13 @@ tfsReplace() { #moves, replaces and renames
 	echo -n $yellowText"FYI: "
 	echo -n $none
 	echo -n $specBlueText
-	echo -n "Current directory:" && pwd
-	echo -n "Files in current directory:" && ls $HOME
-	echo -n $none
+	echo -n "Current directory: " && pwd
+	echo -n "Files in current directory:" && ls $HOME && echo -n $none
+	
 
 		echo -n "Where is the TFS executable?" $redText"Provide a proper directory like '/root/tfs/' if not it will fail. "$none
 		echo -n "If you already have an executable it will be renamed to tfs.old, and if tfs.old exists, it will be deleted. "
-		echo -n "Make sure that you select yes when overwriting. "
+		echo -n "Make sure that you select yes when overwriting, and that you already compiled TFS once and that its present in  "
 		echo -n "Type [break] to skip this step."
 		read tfsDir
 		if [[ $tfsDir = "break" ]]; then
@@ -77,12 +77,16 @@ tfsReplace() { #moves, replaces and renames
 		else	
 			cd
 				cd $tfsDir
-				mv tfs tfs.old
-				cd $HOME
-					cd /forgottenserver/build/
-					mv tfs $tfsDir
-					cd 
-				echo -n "Done"
+					if [ -e "tfs" ]; then
+						mv tfs tfs.old
+					fi
+
+					cd $HOME
+						cd /forgottenserver/build/
+						mv tfs $tfsDir
+						cd 
+					echo -n "Done"
+					
 		fi
 }
 
