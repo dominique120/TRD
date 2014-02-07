@@ -125,11 +125,12 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 #Notice to the user
-echo -n $blueText"This script will do everything necessary to put a new TFS executable in place of the current one."\n$none \
-$redText"This script is for advanced users only, use it only if you know what you are doing."\n$none "This script does all its operations in the home folder of the current user, beware!"\n\n
+echo -n $blueText"This script will do everything necessary to put a new TFS executable in place of the current one."$none \
+$redText"This script is for advanced users only, use it only if you know what you are doing."$none \
+"This script does all its operations in the home folder of the current user, beware!"
 
 #Clean old revs
-echo -n "Should the script clean the home folder for any previous revs? [y] or [n]"
+echo -n "Should the script clean the home folder for any previous revs? [y] or [n]: "
 read ans1_1
 	if [[ $ans1_1 = "y" ]]; then 
 		cleanOldRev
@@ -141,7 +142,7 @@ read ans1_1
 	
 #Clone new rev
 #Might add a check to see if forgottenserver dir exists.
-echo -n "Should the script clone the newest TFS rev?"
+echo -n "Should the script clone the newest TFS rev?: "
 read ans2_1
 	if [[ $ans2_1 = "y" ]]; then
 		fetchTfs
@@ -152,10 +153,10 @@ read ans2_1
 	fi
 
 #Install and update deps
-echo -n "Should the script update and fetch the dependencies? [y] or [n]"
+echo -n "Should the script update and fetch the dependencies? [y] or [n]: "
 read ans3_1
 	if [[ $ans3_1 = "y" ]]; then
-		echo -n "What OS is this? [CentOS, Scientific Linux, Ubuntu, Debian, Arch Linux]"
+		echo -n "What OS is this? [CentOS, Scientific Linux, Ubuntu, Debian, Arch Linux]: "
 		read ans3_2
 			if [[ $ans3_2 = "CentOS" ]] || [[ $ans3_2 = "Scientific Linux" ]]; then
 				centDeps
@@ -175,7 +176,7 @@ read ans3_1
 	
 	
 #Clean the dir for previous builds
-echo -n "Should the script clean for previous builds? [y] or [n]"
+echo -n "Should the script clean for previous builds? [y] or [n]: "
 read ans4_1
 	if [[ $ans4_1 = "y" ]]; then
 		cleanBuild
@@ -186,7 +187,7 @@ read ans4_1
 	fi
 	
 #build the executable
-echo -n "Should the script build the new rev? [y] or [n]"
+echo -n "Should the script build the new rev? [y] or [n]: "
 read ans5_1
 	if [[ $ans5_1 = "y" ]]; then
 	buildPre
@@ -207,7 +208,7 @@ read ans5_1
 	fi
 
 #Replacing the existing executable
-echo -n "This step will kill the existing TFS(if its open). Type [enter] to proceed, type [skip] to skip"
+echo -n "This step will kill the existing TFS(if its open). Type [enter] to proceed, type [skip] to skip: "
 read ans6_1
 	if [[ $ans6_1 = "enter" ]]; then
 		tfsKill
@@ -218,3 +219,7 @@ read ans6_1
 		echo -n "type something correctly"
 		:
 	fi
+
+echo -n $greenText"Succes"$none
+	
+	
