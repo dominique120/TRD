@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+#By Dominique Verellen for use with AeiaOTS
+
 ## Colors
 greenText=$(tput setab 0; tput setaf 2)
 redText=$(tput setab 0; tput setaf 1)
 blueText=$(tput setab 0; tput setaf 6)
 yellowText=$(tput setab 0; tput setaf 3)
 none=$(tput sgr0)
-
 specBlueText=$(tput setab 7; tput setaf 4; tput bold)
 
 ## Fetch number of CPUs
