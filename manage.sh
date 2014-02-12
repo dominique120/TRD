@@ -7,14 +7,14 @@ none=$(tput sgr0)
 
 restartStuff() {
 	pkill apache2
-	service nxingx restart
+	service nginx restart
 	service mysql restart
 	service php5-fpm restart
 }
 
 startStuff() {
 	pkill apache2
-	service nxingx start
+	service nginx start
 	service mysql start
 	service php5-fpm start
 }
@@ -39,13 +39,12 @@ updateSoftware() {
 }
 
 #script starts here
-echo -n "What would you like to do?"
-echo -n "	1) Restart services"
-echo -n "	2) Start services"
-echo -n "	3) Start TFS"
-echo -n "	4) Update software"
-echo -n "	5) Reboot server(when done execute option 2)"
-echo -n "	6) Exit"
+printf "	1) Restart services\n"
+printf "	2) Start services\n"
+printf "	3) Start TFS\n"
+printf "	4) Update software\n"
+printf "	5) Reboot server(when done execute option 2)\n"
+printf "	6) Exit\n"
 read ans2
 	case $ans2 in
 		1)restartStuff;;
