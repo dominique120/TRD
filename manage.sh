@@ -39,12 +39,17 @@ updateSoftware() {
 }
 
 #script starts here
+$greenText
+printf "What would you like to do?"
 printf "	1) Restart services\n"
 printf "	2) Start services\n"
 printf "	3) Start TFS\n"
 printf "	4) Update software\n"
 printf "	5) Reboot server(when done execute option 2)\n"
 printf "	6) Exit\n"
+$none
+echo -n "Your selection: "
+
 read ans2
 	case $ans2 in
 		1)restartStuff;;
