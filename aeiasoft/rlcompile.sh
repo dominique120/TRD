@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script by Dominique Verellen
+# Script by dominique120
 
 # This script pulls the tfs repo, compiles and pulls the dapatapck repo
 
